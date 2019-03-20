@@ -1,5 +1,5 @@
 <?php
-    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction']))
+    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['photonOn']))
     {
         exec("rgb.py");
     }
