@@ -1,10 +1,8 @@
 <?php
-    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['photonOn']))
-    {
-        exec("sudo python3 rgb.py");
-    }
-    function func()
-    {
-        // do stuff
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+      $red = $_REQUEST['red'];
+      $green = $_REQUEST['green'];
+      $blue = $_REQUEST['blue'];
+      exec("sudo python3 rgb.py $red $green $blue");
     }
 ?>

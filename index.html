@@ -58,10 +58,12 @@
     function update() {
       // Get the colors from the sliders
       var r = document.getElementById("red").value;
-      var g = document.getElementById("red").value;
-      var b = document.getElementById("red").value;
+      var g = document.getElementById("green").value;
+      var b = document.getElementById("blue").value;
       //alert(document.getElementById("blue").value);
       // Send the colors to the strip lighting
+      //alert("Sent Request with...\n R: " + r + "\n" +
+        //    "G: " + g + "\nB: " + b);
       $.ajax({
         data: JSON.stringify({
           "red": r,
@@ -73,7 +75,8 @@
         success: function(msg) {
             alert(msg);
         }
-    });
+      });
+
     }
     </script>
 </body>
