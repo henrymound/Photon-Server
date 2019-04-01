@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Photon Color Picker</title>
 </head>
@@ -51,7 +52,7 @@
                 <i class="fab fa-github fa-2x"></i>
             </a>
         </div>
-        Photon &copy; 2019
+        Photon &copy;
     </footer>
     <script src="js/main.js"></script>
     <script>
@@ -60,20 +61,19 @@
       var r = document.getElementById("red").value;
       var g = document.getElementById("green").value;
       var b = document.getElementById("blue").value;
-      //alert(document.getElementById("blue").value);
       // Send the colors to the strip lighting
-      //alert("Sent Request with...\n R: " + r + "\n" +
-        //    "G: " + g + "\nB: " + b);
+      console.log("Sent Request with...\n R: " + r + "\n" +
+            "G: " + g + "\nB: " + b);
       $.ajax({
-        data: JSON.stringify({
-          "red": r,
-          "green": g,
-          "blue": b
-        })
-        url: 'light_on.php',
-        method: 'POST', // or GET
+        //data: JSON.stringify({
+          //"red": r,
+          //"green": g,
+          //"blue": b
+        //}),
+        url: "light_on.php?red="+r+"&green="+g+"&blue="+b,
+        method: 'GET', // or GET
         success: function(msg) {
-            alert(msg);
+           // alert(msg);
         }
       });
 
