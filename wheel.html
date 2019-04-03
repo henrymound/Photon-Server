@@ -61,7 +61,10 @@
       <div class="half readout">
         <div id="values"></div>
       </div>
+      <br>
+      <button onclick="myFunction()">Update</button>
     </div>
+
   <script type="text/javascript">
     // Create a new color picker instance
     // https://iro.js.org/guide.html#getting-started
@@ -73,6 +76,7 @@
       borderWidth: 1,
       borderColor: "#fff",
     });
+
 
     var values = document.getElementById("values");
 
@@ -91,6 +95,14 @@
       var bValue = color.rgb["b"];
       console.log(rValue + " " + gValue + " " + bValue);
 
+
+
+    });
+
+    function myFunction() {
+      var rValue = color.rgb["r"];
+      var gValue = color.rgb["g"];
+      var bValue = color.rgb["b"];
       $.ajax({
         //data: JSON.stringify({
           //"red": r,
@@ -103,8 +115,8 @@
            // alert(msg);
         }
       });
+    }
 
-    });
   </script>
   </body>
 </html>
