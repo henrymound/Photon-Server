@@ -3,6 +3,8 @@ import neopixel
 import sys
 import random
 import time
+from subprocess import call # To call self
+
 
 TOLERANCE = 30 # The difference between range values
 NUMCOLORS = 10 # The number of different random colors generated for the effect
@@ -39,7 +41,7 @@ if len(sys.argv) == 4:
     	bUpper = 255
 
 	pixels = neopixel.NeoPixel(board.D18, 30)
-	while 1 == 1:
+	for x in range(NUMLIGHTS):
 		# Generate an array of random colors based on provided color
 		colors = [
 				(random.randint(rLower,rUpper),
@@ -50,3 +52,5 @@ if len(sys.argv) == 4:
 	    pixelIndex = random.randint(0, NUMLIGHTS - 1)
 	    pixels[pixelIndex] = colors[colorIndex]
 	    time.sleep(.005)
+	# Call script again
+    call(["sudo", "python3", "candle.py", r+"", g+"", b+""])
