@@ -1,6 +1,7 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style type="text/css">
       body {
         color: #fff;
@@ -58,12 +59,6 @@
         <div class="colorPicker"></div>
       </div>
       <div class="half readout">
-        <p>
-          iro.js is an HSV color picker widget for JavaScript with a modern SVG-based user interface -- and no jQuery or extra CSS / images.
-        </p>
-        <span class="title link">Head to <a href="https://iro.js.org?ref=codepen" target="blank">iro.js.org</a> for full documentation and features, or check out the source code on <a href="https://github.com/jaames/iro.js" target="blank">GitHub</a>!
-        </span>
-        <span class="title">Selected Color:</span>
         <div id="values"></div>
       </div>
     </div>
@@ -85,11 +80,30 @@
     colorPicker.on("color:change", function(color){
       // Show the current color in different formats
       // Using the selected color: https://iro.js.org/guide.html#selected-color-api
-      values.innerHTML = [
-        "hex: " + color.hexString,
-        "rgb: " + color.rgbString,
-        "hsl: " + color.hslString,
-      ].join("<br>");
+      // values.innerHTML = [
+      //   //"hex: " + color.hexString,
+      //   //"rgb: " + 
+      //   color.rgbString.substring(3),
+      //   //"hsl: " + color.hslString,
+      // ].join("<br>");
+      var rValue = color.rgb["r"];
+      var gValue = color.rgb["g"];
+      var bValue = color.rgb["b"];
+      console.log(rValue + " " + gValue + " " + bValue);
+
+      $.ajax({
+        //data: JSON.stringify({
+          //"red": r,
+          //"green": g,
+          //"blue": b
+        //}),
+        url: "light_on.php?red="+rValue+"&green="+gValue+"&blue="+bValue,
+        method: 'GET', // or GET
+        success: function(msg) {
+           // alert(msg);
+        }
+      });
+
     });
   </script>
   </body>
