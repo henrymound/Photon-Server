@@ -79,7 +79,9 @@
 
 
     var values = document.getElementById("values");
-
+    var rValue = 0;
+    var gValue = 0;
+    var bValue = 0;
     // https://iro.js.org/guide.html#color-picker-events
     colorPicker.on("color:change", function(color){
       // Show the current color in different formats
@@ -90,19 +92,17 @@
       //   color.rgbString.substring(3),
       //   //"hsl: " + color.hslString,
       // ].join("<br>");
-      var rValue = color.rgb["r"];
-      var gValue = color.rgb["g"];
-      var bValue = color.rgb["b"];
-      console.log(rValue + " " + gValue + " " + bValue);
+      rValue = color.rgb["r"];
+      gValue = color.rgb["g"];
+      bValue = color.rgb["b"];
+      
 
 
 
     });
 
     function myFunction() {
-      var rValue = color.rgb["r"];
-      var gValue = color.rgb["g"];
-      var bValue = color.rgb["b"];
+      console.log(rValue + " " + gValue + " " + bValue);
       $.ajax({
         //data: JSON.stringify({
           //"red": r,
