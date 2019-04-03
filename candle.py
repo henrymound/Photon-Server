@@ -11,6 +11,6 @@ while 1 == 1:
               (225, 146, 71),
               (225, 138, 25)]
     colorIndex = random.randint(0,len(colors) - 1)
-    pixelIndex = random.randint(0, 30)
+    pixelIndex = random.randint(0, 29)
     pixels[pixelIndex] = colors[colorIndex]
     time.sleep(.05)
