@@ -8,7 +8,7 @@ from subprocess import call # To call self
 
 TOLERANCE = 30 # The difference between range values
 NUMCOLORS = 10 # The number of different random colors generated for the effect
-NUMLIGHTS = 30 # The number of lights on the Photon
+NUMLIGHTS = 144 # The number of lights on the Photon
 
 if len(sys.argv) == 4:
     # print("Got 3 RGB Values!")
