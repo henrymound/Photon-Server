@@ -13,4 +13,4 @@ while 1 == 1:
     colorIndex = random.randint(0,len(colors) - 1)
     pixelIndex = random.randint(0, 29)
     pixels[pixelIndex] = colors[colorIndex]
-    time.sleep(.0005)
+    time.sleep(.005)
