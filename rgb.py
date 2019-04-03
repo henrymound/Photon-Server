@@ -11,4 +11,4 @@ if len(sys.argv) == 4:
     # print("G: " + g)
     # print("B: " + b)
     pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
-    pixels.fill((r, g, b, 0))
+    pixels.fill((g, r, b, 0))
