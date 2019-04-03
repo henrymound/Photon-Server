@@ -12,7 +12,7 @@ if len(sys.argv) == 4:
     # print("B: " + b)
     pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
     pixels.fill((g, r, b, 0))
-else if len(sys.argv) == 5:
+if len(sys.argv) == 5:
     # print("Got 4 RGBW Values!")
     r = int(sys.argv[1])
     g = int(sys.argv[2])
