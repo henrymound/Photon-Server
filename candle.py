@@ -11,5 +11,5 @@ for x in range(1, 30):
               (225, 146, 71),
               (225, 138, 25)]
     colorIndex = random.randint(0,len(colors))
-    pixels[x] = (r, g, b)
+    pixels[x] = colors[colorIndex]
     time.sleep(.05)
