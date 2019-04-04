@@ -35,13 +35,13 @@ if len(sys.argv) == 4:
     if(bUpper > 255): bUpper = 255
 
     pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
+    colors = [(random.randint(gLower,gUpper), random.randint(rLower,rUpper), random.randint(bLower,bUpper), 0) for _ in range(NUMCOLORS)]
+
     while 1 == 1:
-        for x in range(NUMLIGHTS):
-            # Generate an array of random colors based on provided color
-            colors = [(random.randint(gLower,gUpper), random.randint(rLower,rUpper), random.randint(bLower,bUpper), 0) for _ in range(NUMCOLORS)]
-            colorIndex = random.randint(0,len(colors) - 1)
-            pixelIndex = random.randint(0, NUMLIGHTS - 1)
-            pixels[pixelIndex] = colors[colorIndex]
-            #time.sleep(.005)
-            # Call script again
-            #call(["sudo", "python3", "candle.py", str(r), str(g), str(b)])
+        # Generate an array of random colors based on provided color
+        colorIndex = random.randint(0,len(colors) - 1)
+        pixelIndex = random.randint(0, NUMLIGHTS - 1)
+        pixels[pixelIndex] = colors[colorIndex]
+        #time.sleep(.005)
+        # Call script again
+        #call(["sudo", "python3", "candle.py", str(r), str(g), str(b)])
