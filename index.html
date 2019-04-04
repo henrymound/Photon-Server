@@ -25,21 +25,26 @@
                     <div>
                         <label for="red">Red</label>
                         <input type="number" id="redNum">
-                        <input value="100" type="range" min="0" max="255" id="red" onchange="update()">
+                        <input value="0" type="range" min="0" max="255" id="red" onchange="update()">
                     </div>
                     <div>
                         <label for="green">Green</label>
                         <input type="number" id="greenNum">
-                        <input value="100" type="range" min="0" max="255" id="green" onchange="update()">
+                        <input value="0" type="range" min="0" max="255" id="green" onchange="update()">
                     </div>
                     <div>
                         <label for="blue">Blue</label>
                         <input type="number" id="blueNum">
-                        <input value="100" type="range" min="0" max="255" id="blue" onchange="update()">
+                        <input value="0" type="range" min="0" max="255" id="blue" onchange="update()">
+                    </div>
+                    <div>
+                        <label for="white">White</label>
+                        <input type="number" id="whiteNum">
+                        <input value="0" type="range" min="0" max="255" id="white" onchange="update()">
                     </div>
                     <div>
                       <center>
-                        <input type="button" id="send_color" value="Update" onclick="update()">
+                        <input type="button" id="send_color" value="Candle" onclick="candle()">
                       </center>
                     </div>
                 </div>
@@ -61,6 +66,7 @@
       var r = document.getElementById("red").value;
       var g = document.getElementById("green").value;
       var b = document.getElementById("blue").value;
+      var w = document.getElementById("white").value;
       // Send the colors to the strip lighting
       console.log("Sent Request with...\n R: " + r + "\n" +
             "G: " + g + "\nB: " + b);
@@ -70,7 +76,7 @@
           //"green": g,
           //"blue": b
         //}),
-        url: "light_on.php?red="+r+"&green="+g+"&blue="+b,
+        url: "light_on.php?red="+r+"&green="+g+"&blue="+b+"&white="+w,
         method: 'GET', // or GET
         success: function(msg) {
            // alert(msg);
@@ -78,6 +84,31 @@
       });
 
     }
+
+    function candle() {
+      // Get the colors from the sliders
+      var r = document.getElementById("red").value;
+      var g = document.getElementById("green").value;
+      var b = document.getElementById("blue").value;
+      var w = document.getElementById("white").value;
+      // Send the colors to the strip lighting
+      console.log("Sent Candle Request with...\n R: " + r + "\n" +
+            "G: " + g + "\nB: " + b);
+      $.ajax({
+        //data: JSON.stringify({
+          //"red": r,
+          //"green": g,
+          //"blue": b
+        //}),
+        url: "candle.php?red="+r+"&green="+g+"&blue="+b+"&white="+w,
+        method: 'GET', // or GET
+        success: function(msg) {
+           // alert(msg);
+        }
+      });
+
+    }
+
     </script>
 </body>
 </html>

@@ -6,15 +6,16 @@ import time
 from subprocess import call # To call self
 
 
-TOLERANCE = 99 # The difference between range values
+TOLERANCE = 77 # The difference between range values
 NUMCOLORS = 38 # The number of different random colors generated for the effect
 NUMLIGHTS = 144 # The number of lights on the Photon
 
-if len(sys.argv) == 4:
-    # print("Got 3 RGB Values!")
+if len(sys.argv) == 5:
+    # print("Got 4 RGBW Values!")
     r = int(sys.argv[1])
     g = int(sys.argv[2])
     b = int(sys.argv[3])
+    w = int(sys.argv[4])
 
     # Get upper and lower values
     rLower = r - TOLERANCE
@@ -26,6 +27,9 @@ if len(sys.argv) == 4:
     bLower = b - TOLERANCE
     bUpper = b + TOLERANCE
 
+    wLower = w - TOLERANCE
+    wUpper = w + TOLERANCE
+
     # Make sure all the values are within the range (0, 255)
     if(rLower < 0): rLower = 0
     if(rUpper > 255): rUpper = 255
@@ -33,9 +37,11 @@ if len(sys.argv) == 4:
     if(gUpper > 255): gUpper = 255
     if(bLower < 0): bLower = 0
     if(bUpper > 255): bUpper = 255
+    if(wLower < 0): wLower = 0
+    if(wUpper > 255): wUpper = 255
 
     pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
-    colors = [(random.randint(gLower,gUpper), random.randint(rLower,rUpper), random.randint(bLower,bUpper), 0) for _ in range(NUMCOLORS)]
+    colors = [(random.randint(gLower,gUpper), random.randint(rLower,rUpper), random.randint(bLower,bUpper), random.randint(wLower,wUpper)) for _ in range(NUMCOLORS)]
 
     while 1 == 1:
         # Generate an array of random colors based on provided color

@@ -4,6 +4,6 @@
       $green = $_REQUEST['green'];
       $blue = $_REQUEST['blue'];
       $white = $_REQUEST['white'];
-      exec("sudo python3 rgb.py $red $green $blue $white");
+      exec("sudo python3 candle.py $red $green $blue $white");
     }
 ?>
