@@ -43,4 +43,4 @@ if len(sys.argv) == 4:
         pixels[pixelIndex] = colors[colorIndex]
         time.sleep(.005)
         # Call script again
-        call(["sudo", "python3", "candle.py", r+"", g+"", b+""])
+        call(["sudo", "python3", "candle.py", r, g, b])
