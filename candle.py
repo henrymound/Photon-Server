@@ -6,7 +6,7 @@ import time
 from subprocess import call # To call self
 
 
-TOLERANCE = 30 # The difference between range values
+TOLERANCE = 100 # The difference between range values
 NUMCOLORS = 10 # The number of different random colors generated for the effect
 NUMLIGHTS = 144 # The number of lights on the Photon
 
