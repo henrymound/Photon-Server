@@ -40,13 +40,14 @@ if len(sys.argv) == 4:
     if(bUpper > 255):
     	bUpper = 255
 
-	pixels = neopixel.NeoPixel(board.D18, 30)
+	pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
 	for x in range(NUMLIGHTS):
 		# Generate an array of random colors based on provided color
 		colors = [
-				(random.randint(rLower,rUpper),
-				 random.randint(gLower,gUpper),
-				 random.randint(bLower,bUpper))
+				(random.randint(gLower,gUpper),
+				 random.randint(rLower,rUpper),
+				 random.randint(bLower,bUpper),
+				 0)
 			 for _ in range(NUMCOLORS)]
 	    colorIndex = random.randint(0,len(colors) - 1)
 	    pixelIndex = random.randint(0, NUMLIGHTS - 1)
