@@ -44,7 +44,7 @@
                     </div>
                     <div>
                       <center>
-                        <input type="button" id="send_color" value="Candle" onclick="candle()">
+                        <input type="button" id="send_color" value="Accelerometer" onclick="candle()">
                       </center>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
           //"green": g,
           //"blue": b
         //}),
-        url: "candle.php?red="+r+"&green="+g+"&blue="+b+"&white="+w,
+        url: "accel.php",
         method: 'GET', // or GET
         success: function(msg) {
            // alert(msg);
