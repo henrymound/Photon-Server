@@ -69,6 +69,7 @@
       <button onclick="gyroscope()">Gyroscope</button>
       <button onclick="candle()">Candle</button>
       <button onclick="strip()">Strip 1</button>
+      <button onclick="color()">Send Color</button>
     </center>
 
 
@@ -102,13 +103,13 @@
       rValue = color.rgb["r"];
       gValue = color.rgb["g"];
       bValue = color.rgb["b"];
-      myFunction()
+      // myFunction()
 
 
 
     });
 
-    function myFunction() {
+    function color() {
       console.log(rValue + " " + gValue + " " + bValue);
       $.ajax({
         //data: JSON.stringify({
