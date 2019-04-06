@@ -136,7 +136,7 @@
     function candle() {
       console.log(rValue + " " + gValue + " " + bValue);
       $.ajax({
-        url: "candle.php?red="+rValue+"&green="+gValue+"&blue="+bValue,
+        url: "candle.php?red="+rValue+"&green="+gValue+"&blue="+bValue+"&white=50",
         method: 'GET', // or GET
         success: function(msg) {// alert(msg);
         }
