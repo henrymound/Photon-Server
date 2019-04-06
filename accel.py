@@ -1,11 +1,23 @@
 #!/usr/bin/python
-
 import smbus
 import math
 import time
 import board
 import neopixel
 import sys
+
+# Order all current running programs to STOP
+f = open("status.txt", "w")
+f.write("STOP")
+f.close()
+
+# Wait for them to do so
+time.sleep(.5)
+
+# Set status to represent script is running
+f = open("status.txt", "w")
+f.write("RUN")
+f.close()
 
 # Power management registers
 power_mgmt_1 = 0x6b
@@ -47,8 +59,19 @@ bus.write_byte_data(address, power_mgmt_1, 0)
 #pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
 pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
 
-while True:
-    time.sleep(0.1)
+loop = 0
+while loop == loop:
+    # Check for stop signal
+    h = open("status.txt", "r")
+    status = h.read()
+    h.close()
+    
+    if status == "STOP":
+        #print("Accel Status is 'STOP' after " + str(x) + "iterations.")
+        loop = 1
+
+    time.sleep(0.03)
+
     gyro_xout = read_word_2c(0x43)
     gyro_yout = read_word_2c(0x45)
     gyro_zout = read_word_2c(0x47)
@@ -91,4 +114,3 @@ while True:
     pixels.fill((int(accel_r), int(accel_g), int(accel_b), 0))
     print("Filling with R: "+str(int(accel_r))+" G: "+str(int(accel_g))+" B: "+str(int(accel_b)))
     
-    time.sleep(0.001)

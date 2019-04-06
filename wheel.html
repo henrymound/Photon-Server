@@ -62,8 +62,14 @@
         <div id="values"></div>
       </div>
       <br>
-      <button onclick="myFunction()">Update</button>
+      
     </div>
+    <center>
+      <button onclick="accelerometer()">Accelerometer</button>
+      <button onclick="gyroscope()">Gyroscope</button>
+      <button onclick="strip()">Strip 1</button>
+    </center>
+
 
   <script type="text/javascript">
     // Create a new color picker instance
@@ -95,7 +101,7 @@
       rValue = color.rgb["r"];
       gValue = color.rgb["g"];
       bValue = color.rgb["b"];
-      
+      myFunction()
 
 
 
@@ -115,6 +121,16 @@
            // alert(msg);
         }
       });
+
+    function accelerometer() {
+      console.log(rValue + " " + gValue + " " + bValue);
+      $.ajax({
+        url: "accel.php",
+        method: 'GET', // or GET
+        success: function(msg) {// alert(msg);
+        }
+      });
+
     }
 
   </script>
