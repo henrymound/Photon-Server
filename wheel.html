@@ -67,6 +67,7 @@
     <center>
       <button onclick="accelerometer()">Accelerometer</button>
       <button onclick="gyroscope()">Gyroscope</button>
+      <button onclick="candle()">Candle</button>
       <button onclick="strip()">Strip 1</button>
     </center>
 
@@ -120,7 +121,7 @@
         success: function(msg) {
            // alert(msg);
         }
-      });
+      });}
 
     function accelerometer() {
       console.log(rValue + " " + gValue + " " + bValue);
@@ -129,9 +130,25 @@
         method: 'GET', // or GET
         success: function(msg) {// alert(msg);
         }
-      });
+    });}
 
-    }
+    function candle() {
+      console.log(rValue + " " + gValue + " " + bValue);
+      $.ajax({
+        url: "candle.php",
+        method: 'GET', // or GET
+        success: function(msg) {// alert(msg);
+        }
+    });}
+
+    function strip() {
+      console.log(rValue + " " + gValue + " " + bValue);
+      $.ajax({
+        url: "strip.php",
+        method: 'GET', // or GET
+        success: function(msg) {// alert(msg);
+        }
+    });}
 
   </script>
   </body>

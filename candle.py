@@ -5,6 +5,18 @@ import random
 import time
 from subprocess import call # To call self
 
+# Order all current running programs to STOP
+f = open("status.txt", "w")
+f.write("STOP")
+f.close()
+
+# Wait for them to do so
+time.sleep(.5)
+
+# Set status to represent script is running
+f = open("status.txt", "w")
+f.write("RUN")
+f.close()
 
 TOLERANCE = 77 # The difference between range values
 NUMCOLORS = 38 # The number of different random colors generated for the effect
@@ -42,8 +54,17 @@ if len(sys.argv) == 5:
 
     pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
     colors = [(random.randint(gLower,gUpper), random.randint(rLower,rUpper), random.randint(bLower,bUpper), random.randint(wLower,wUpper)) for _ in range(NUMCOLORS)]
-    counter = 0
-    while counter < 1000:
+    
+    loop = 0
+    while loop == 0:
+        # Check for stop signal
+        h = open("status.txt", "r")
+        status = h.read()
+        h.close()
+        
+        if status == "STOP":
+            #print("Accel Status is 'STOP' after " + str(x) + "iterations.")
+            loop = 1
         # Generate an array of random colors based on provided color
         colorIndex = random.randint(0,len(colors) - 1)
         pixelIndex = random.randint(0, NUMLIGHTS - 1)
