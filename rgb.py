@@ -2,6 +2,11 @@ import board
 import neopixel
 import sys
 
+# Tell other programs to stop
+f = open("status.txt", "w")
+f.write("STOP")
+f.close()
+
 if len(sys.argv) == 4:
     # print("Got 3 RGB Values!")
     r = int(sys.argv[1])
