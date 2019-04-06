@@ -1,114 +1,156 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <title>Photon Color Picker</title>
-</head>
-<body>
+    <style type="text/css">
+      body {
+        color: #fff;
+        background: #171F30;
+        line-height: 150%;
+      }
+
+      .wrapper svg {
+      }
+
+      .wrap {
+        min-height: 100vh;
+        max-width: 720px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        
+        .half {
+          width: 50%;
+          padding: 32px 0;
+        }
+      }
+
+      .title {
+        font-family: sans-serif;
+        line-height: 24px;
+        display: block;
+        padding: 8px 0;
+      }
+
+      .readout {
+        margin-top: 32px;
+        line-height: 180%;
+      }
+
+      #values {
+       font-family: monospace;
+        line-height: 150%;
+      }
+
+      .link {
+        margin-top: 16px;
+        
+        a {
+          color: MediumSlateBlue;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <div class="wrap">
-        <header>
-            <h1>
-                Photon
-            </h1>
-        </header>
-        <main>
-            <div class="color-slider-wrap">
-                <div class="color-wrap">
-                    <div id="color-display"></div>
-                </div>
-                <div class="sliders">
-                    <div>
-                        <label for="red">Red</label>
-                        <input type="number" id="redNum">
-                        <input value="0" type="range" min="0" max="255" id="red" onchange="update()">
-                    </div>
-                    <div>
-                        <label for="green">Green</label>
-                        <input type="number" id="greenNum">
-                        <input value="0" type="range" min="0" max="255" id="green" onchange="update()">
-                    </div>
-                    <div>
-                        <label for="blue">Blue</label>
-                        <input type="number" id="blueNum">
-                        <input value="0" type="range" min="0" max="255" id="blue" onchange="update()">
-                    </div>
-                    <div>
-                        <label for="white">White</label>
-                        <input type="number" id="whiteNum">
-                        <input value="0" type="range" min="0" max="255" id="white" onchange="update()">
-                    </div>
-                    <div>
-                      <center>
-                        <input type="button" id="send_color" value="Accelerometer" onclick="candle()">
-                      </center>
-                    </div>
-                </div>
-            </div>
-        </main>
+      <div class="half">
+        <div class="colorPicker"></div>
+      </div>
+      <div class="half readout">
+        <div id="values"></div>
+      </div>
+      <br>
+      
     </div>
-    <footer>
-        <div class="icon-wrap">
-            <a href="https://github.com/golobro" target="_blank">
-                <i class="fab fa-github fa-2x"></i>
-            </a>
-        </div>
-        Photon &copy;
-    </footer>
-    <script src="js/main.js"></script>
-    <script>
-    function update() {
-      // Get the colors from the sliders
-      var r = document.getElementById("red").value;
-      var g = document.getElementById("green").value;
-      var b = document.getElementById("blue").value;
-      var w = document.getElementById("white").value;
-      // Send the colors to the strip lighting
-      console.log("Sent Request with...\n R: " + r + "\n" +
-            "G: " + g + "\nB: " + b);
+    <center>
+      <button onclick="accelerometer()">Accelerometer</button>
+      <button onclick="gyroscope()">Gyroscope</button>
+      <button onclick="candle()">Candle</button>
+      <button onclick="strip()">Strip 1</button>
+      <button onclick="color()">Send Color</button>
+    </center>
+
+
+  <script type="text/javascript">
+    // Create a new color picker instance
+    // https://iro.js.org/guide.html#getting-started
+    var colorPicker = new iro.ColorPicker(".colorPicker", {
+      // color picker options
+      // Option guide: https://iro.js.org/guide.html#color-picker-options
+      width: 280,
+      color: "rgb(255, 0, 0)",
+      borderWidth: 1,
+      borderColor: "#fff",
+    });
+
+
+    var values = document.getElementById("values");
+    var rValue = 0;
+    var gValue = 0;
+    var bValue = 0;
+    // https://iro.js.org/guide.html#color-picker-events
+    colorPicker.on("color:change", function(color){
+      // Show the current color in different formats
+      // Using the selected color: https://iro.js.org/guide.html#selected-color-api
+      // values.innerHTML = [
+      //   //"hex: " + color.hexString,
+      //   //"rgb: " + 
+      //   color.rgbString.substring(3),
+      //   //"hsl: " + color.hslString,
+      // ].join("<br>");
+      rValue = color.rgb["r"];
+      gValue = color.rgb["g"];
+      bValue = color.rgb["b"];
+      // myFunction()
+
+
+
+    });
+
+    function color() {
+      console.log(rValue + " " + gValue + " " + bValue);
       $.ajax({
         //data: JSON.stringify({
           //"red": r,
           //"green": g,
           //"blue": b
         //}),
-        url: "light_on.php?red="+r+"&green="+g+"&blue="+b+"&white="+w,
+        url: "light_on.php?red="+rValue+"&green="+gValue+"&blue="+bValue,
         method: 'GET', // or GET
         success: function(msg) {
            // alert(msg);
         }
-      });
+      });}
 
-    }
-
-    function candle() {
-      // Get the colors from the sliders
-      var r = document.getElementById("red").value;
-      var g = document.getElementById("green").value;
-      var b = document.getElementById("blue").value;
-      var w = document.getElementById("white").value;
-      // Send the colors to the strip lighting
-      console.log("Sent Candle Request with...\n R: " + r + "\n" +
-            "G: " + g + "\nB: " + b);
+    function accelerometer() {
+      console.log(rValue + " " + gValue + " " + bValue);
       $.ajax({
-        //data: JSON.stringify({
-          //"red": r,
-          //"green": g,
-          //"blue": b
-        //}),
         url: "accel.php",
         method: 'GET', // or GET
-        success: function(msg) {
-           // alert(msg);
+        success: function(msg) {// alert(msg);
         }
-      });
+    });}
 
-    }
+    function candle() {
+      console.log(rValue + " " + gValue + " " + bValue);
+      $.ajax({
+        url: "candle.php",
+        method: 'GET', // or GET
+        success: function(msg) {// alert(msg);
+        }
+    });}
 
-    </script>
-</body>
+    function strip() {
+      console.log(rValue + " " + gValue + " " + bValue);
+      $.ajax({
+        url: "strip.php",
+        method: 'GET', // or GET
+        success: function(msg) {// alert(msg);
+        }
+    });}
+
+  </script>
+  </body>
 </html>

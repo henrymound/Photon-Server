@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title>Photon Color Picker</title>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>
+                Photon
+            </h1>
+        </header>
+        <main>
+            <div class="color-slider-wrap">
+                <div class="color-wrap">
+                    <div id="color-display"></div>
+                </div>
+                <div class="sliders">
+                    <div>
+                        <label for="red">Red</label>
+                        <input type="number" id="redNum">
+                        <input value="0" type="range" min="0" max="255" id="red" onchange="update()">
+                    </div>
+                    <div>
+                        <label for="green">Green</label>
+                        <input type="number" id="greenNum">
+                        <input value="0" type="range" min="0" max="255" id="green" onchange="update()">
+                    </div>
+                    <div>
+                        <label for="blue">Blue</label>
+                        <input type="number" id="blueNum">
+                        <input value="0" type="range" min="0" max="255" id="blue" onchange="update()">
+                    </div>
+                    <div>
+                        <label for="white">White</label>
+                        <input type="number" id="whiteNum">
+                        <input value="0" type="range" min="0" max="255" id="white" onchange="update()">
+                    </div>
+                    <div>
+                      <center>
+                        <input type="button" id="send_color" value="Accelerometer" onclick="candle()">
+                      </center>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <div class="icon-wrap">
+            <a href="https://github.com/golobro" target="_blank">
+                <i class="fab fa-github fa-2x"></i>
+            </a>
+        </div>
+        Photon &copy;
+    </footer>
+    <script src="js/main.js"></script>
+    <script>
+    function update() {
+      // Get the colors from the sliders
+      var r = document.getElementById("red").value;
+      var g = document.getElementById("green").value;
+      var b = document.getElementById("blue").value;
+      var w = document.getElementById("white").value;
+      // Send the colors to the strip lighting
+      console.log("Sent Request with...\n R: " + r + "\n" +
+            "G: " + g + "\nB: " + b);
+      $.ajax({
+        //data: JSON.stringify({
+          //"red": r,
+          //"green": g,
+          //"blue": b
+        //}),
+        url: "light_on.php?red="+r+"&green="+g+"&blue="+b+"&white="+w,
+        method: 'GET', // or GET
+        success: function(msg) {
+           // alert(msg);
+        }
+      });
+
+    }
+
+    function candle() {
+      // Get the colors from the sliders
+      var r = document.getElementById("red").value;
+      var g = document.getElementById("green").value;
+      var b = document.getElementById("blue").value;
+      var w = document.getElementById("white").value;
+      // Send the colors to the strip lighting
+      console.log("Sent Candle Request with...\n R: " + r + "\n" +
+            "G: " + g + "\nB: " + b);
+      $.ajax({
+        //data: JSON.stringify({
+          //"red": r,
+          //"green": g,
+          //"blue": b
+        //}),
+        url: "accel.php",
+        method: 'GET', // or GET
+        success: function(msg) {
+           // alert(msg);
+        }
+      });
+
+    }
+
+    </script>
+</body>
+</html>
