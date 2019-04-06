@@ -13,7 +13,7 @@
       }
 
       .wrap {
-        min-height: 100vh;
+        min-height: 50vh;
         max-width: 720px;
         margin: 0 auto;
         display: flex;
@@ -65,11 +65,11 @@
       
     </div>
     <center>
-      <button onclick="accelerometer()">Accelerometer</button>
-      <button onclick="gyroscope()">Gyroscope</button>
-      <button onclick="candle()">Candle</button>
-      <button onclick="strip()">Strip 1</button>
-      <button onclick="color()">Send Color</button>
+      <button style="width:100px;height:100px" onclick="accelerometer()">Accelerometer</button>
+      <button style="width:100px;height:100px" onclick="gyro()">Gyroscope</button>
+      <button style="width:100px;height:100px" onclick="candle()">Candle</button>
+      <button style="width:100px;height:100px" onclick="strip()">Strip 1</button>
+      <button style="width:100px;height:100px" onclick="color()">Send Color</button>
     </center>
 
 
@@ -136,7 +136,7 @@
     function candle() {
       console.log(rValue + " " + gValue + " " + bValue);
       $.ajax({
-        url: "candle.php",
+        url: "candle.php?red="+rValue+"&green="+gValue+"&blue="+bValue,
         method: 'GET', // or GET
         success: function(msg) {// alert(msg);
         }
@@ -151,6 +151,14 @@
         }
     });}
 
+    function gyro() {
+      console.log(rValue + " " + gValue + " " + bValue);
+      $.ajax({
+        url: "gyro.php",
+        method: 'GET', // or GET
+        success: function(msg) {// alert(msg);
+        }
+    });}
   </script>
   </body>
 </html>
