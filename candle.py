@@ -19,7 +19,7 @@ f.write("RUN")
 f.close()
 
 TOLERANCE = 77 # The difference between range values
-NUMCOLORS = 38 # The number of different random colors generated for the effect
+NUMCOLORS = 60 # The number of different random colors generated for the effect
 NUMLIGHTS = 144 # The number of lights on the Photon
 
 if len(sys.argv) == 5:
@@ -69,7 +69,6 @@ if len(sys.argv) == 5:
         colorIndex = random.randint(0,len(colors) - 1)
         pixelIndex = random.randint(0, NUMLIGHTS - 1)
         pixels[pixelIndex] = colors[colorIndex]
-        pixels.show()
         #time.sleep(.005)
         # Call script again
         #call(["sudo", "python3", "candle.py", str(r), str(g), str(b)])
