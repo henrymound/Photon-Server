@@ -69,7 +69,6 @@ if len(sys.argv) == 5:
         colorIndex = random.randint(0,len(colors) - 1)
         pixelIndex = random.randint(0, NUMLIGHTS - 1)
         pixels[pixelIndex] = colors[colorIndex]
-        counter++
         #time.sleep(.005)
         # Call script again
         #call(["sudo", "python3", "candle.py", str(r), str(g), str(b)])
