@@ -60,7 +60,7 @@ bus.write_byte_data(address, power_mgmt_1, 0)
 pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
 
 loop = 0
-while loop == loop:
+while loop == 0:
     # Check for stop signal
     h = open("status.txt", "r")
     status = h.read()
@@ -69,6 +69,7 @@ while loop == loop:
     if status == "STOP":
         #print("Accel Status is 'STOP' after " + str(x) + "iterations.")
         loop = 1
+        break
 
     time.sleep(0.03)
 
