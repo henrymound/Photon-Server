@@ -18,8 +18,9 @@ f = open("status.txt", "w")
 f.write("RUN")
 f.close()
 
-TOLERANCE = 77 # The difference between range values
-NUMCOLORS = 60 # The number of different random colors generated for the effect
+TOLERANCE = 47 # The difference between range values
+NUMCOLORS = 30 # The number of different random colors generated for the effect
+NUMBLANKS = 20 # The number of empty values to be included in the effect
 NUMLIGHTS = 144 # The number of lights on the Photon
 
 if len(sys.argv) == 5:
@@ -55,6 +56,9 @@ if len(sys.argv) == 5:
     pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
     colors = [(random.randint(gLower,gUpper), random.randint(rLower,rUpper), random.randint(bLower,bUpper), random.randint(wLower,wUpper)) for _ in range(NUMCOLORS)]
     
+    for c in range(NUMBLANKS):
+    	colors.append(0, 0, 0, 0) # Append empty values
+
     loop = 0
     while loop == 0:
         # Check for stop signal
