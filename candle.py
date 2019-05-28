@@ -23,6 +23,7 @@ NUMCOLORS = 30 # The number of different random colors generated for the effect
 NUMBLANKS = 20 # The number of empty values to be included in the effect
 NUMLIGHTS = 144 # The number of lights on the Photon
 
+
 if len(sys.argv) == 5:
     # print("Got 4 RGBW Values!")
     r = int(sys.argv[1])
@@ -71,7 +72,7 @@ if len(sys.argv) == 5:
             loop = 1
         # Generate an array of random colors based on provided color
         colorIndex = random.randint(0,len(colors) - 1)
-        pixelIndex = random.randint(0, NUMLIGHTS - 1)
+        pixelIndex = random.randint(0, NUMLIGHTS * 2 - 1)
         pixels[pixelIndex] = colors[colorIndex]
         #time.sleep(.005)
         # Call script again
