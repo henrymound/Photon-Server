@@ -22,7 +22,7 @@ TOLERANCE = 47 # The difference between range values
 NUMCOLORS = 30 # The number of different random colors generated for the effect
 NUMBLANKS = 20 # The number of empty values to be included in the effect
 NUMLIGHTS = 144 # The number of lights on the Photon
-
+DELAY = .01 # Delay between refresh
 
 if len(sys.argv) == 5:
     # print("Got 4 RGBW Values!")
@@ -55,10 +55,10 @@ if len(sys.argv) == 5:
     if(wUpper > 255): wUpper = 255
 
     pixels = neopixel.NeoPixel(board.D18, 144, pixel_order=neopixel.RGBW)
-    colors = [(random.randint(gLower,gUpper), random.randint(rLower,rUpper), random.randint(bLower,bUpper), random.randint(wLower,wUpper)) for _ in range(NUMCOLORS)]
+    colors = [(random.randint(gLower,gUpper), random.randint(rLower,rUpper), random.randint(bLower,bUpper), random.randint(wLower,wUpper)) for _ in range(NUMCOLORS - NUMBLANKS)]
     
-    for c in range(NUMBLANKS):
-    	colors.append(0, 0, 0, 0) # Append empty values
+    for c in range(NUMBLANKS - 3):
+    	colors.append((0, 0, 0, 0)) # Append empty values
 
     loop = 0
     while loop == 0:
@@ -72,8 +72,8 @@ if len(sys.argv) == 5:
             loop = 1
         # Generate an array of random colors based on provided color
         colorIndex = random.randint(0,len(colors) - 1)
-        pixelIndex = random.randint(0, NUMLIGHTS * 2 - 1)
+        pixelIndex = random.randint(0, NUMLIGHTS - 1)
         pixels[pixelIndex] = colors[colorIndex]
-        #time.sleep(.005)
+        #time.sleep(DELAY)
         # Call script again
         #call(["sudo", "python3", "candle.py", str(r), str(g), str(b)])
