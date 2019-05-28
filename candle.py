@@ -20,7 +20,7 @@ f.close()
 
 TOLERANCE = 77 # The difference between range values
 NUMCOLORS = 60 # The number of different random colors generated for the effect
-NUMLIGHTS = 144 # The number of lights on the Photon
+NUMLIGHTS = 60 # The number of lights on the Photon
 
 if len(sys.argv) == 5:
     # print("Got 4 RGBW Values!")
@@ -67,7 +67,7 @@ if len(sys.argv) == 5:
             loop = 1
         # Generate an array of random colors based on provided color
         colorIndex = random.randint(0,len(colors) - 1)
-        pixelIndex = random.randint(0, NUMLIGHTS - 1)
+        pixelIndex = random.randint(0, NUMLIGHTS * 2 - 1)
         pixels[pixelIndex] = colors[colorIndex]
         #time.sleep(.005)
         # Call script again
